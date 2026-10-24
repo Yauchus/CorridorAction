@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [Header("Параметры Здоровья")]
+    [Header("Health parametrs")]
     public float maxHealth = 100f;
     public float currentHealth;
 
-    [Header("Кто это?")]
+    [Header("Who?")]
     public bool isPlayer = false;
 
-    [Header("UI (Только для игрока)")]
+    [Header("UI (for player)")]
     public Slider hpSlider;
     public GameObject gameOverPanel;
     public GameObject winPanel; 
@@ -81,30 +81,6 @@ public class Health : MonoBehaviour
         {
             Debug.Log("Враг уничтожен");
             Destroy(gameObject);
-            CheckWinCondition();
-        }
-    }
-
-    void CheckWinCondition()
-    {
-        GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        if (remainingEnemies.Length <= 1)
-        {
-            Debug.Log("ПОБЕДА!");
-
-            if (winPanel != null)
-            {
-                winPanel.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("WinPanel вообще не найдена на сцене");
-            }
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            Time.timeScale = 0f;
         }
     }
 
